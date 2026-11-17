@@ -1,0 +1,7 @@
+[wokwi]
+version = 1
+# Firmware paths are used only by the Wokwi VS Code extension / wokwi-cli.
+# Build first with:
+#   arduino-cli compile --fqbn arduino:avr:uno --output-dir build .
+firmware = "build/car_Key_Unlock_by_RF_Module_by_UnknownEng.ino.hex"
+elf      = "build/car_Key_Unlock_by_RF_Module_by_UnknownEng.ino.elf"

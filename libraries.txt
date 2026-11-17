@@ -1,0 +1,3 @@
+# Wokwi library dependencies (auto-installed by the simulator)
+IRremote
+RF24

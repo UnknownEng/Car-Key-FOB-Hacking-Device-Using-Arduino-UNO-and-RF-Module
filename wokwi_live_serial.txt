@@ -1,0 +1,34 @@
+Live Wokwi simulation run — real serial output (9600 baud)
+Captured from wokwi.com, Arduino UNO, IRremote 4.7.1 + RF24 1.6.2.
+(DEMO_SELFTEST enabled so one capture->replay runs automatically; in the
+repo the default is DEMO_SELFTEST 0 = button-driven.)
+===========================================================================
+
+=== RF/IR Capture-Replay Demonstrator (educational) ===
+[IR]  receiver + sender ready
+[RF]  nRF24L01 NOT detected (simulation / no module) -> RF disabled
+Buttons:  D4 = CAPTURE   D5 = REPLAY   D6 = RESET
+Ready.
+
+[SELFTEST] running one capture -> replay cycle ...
+[CAPTURE] listening for an RF frame ...
+[CAPTURE] no live frame -> stored DEMO payload
+  captured [8B]: A0 A1 A2 A3 A4 A5 A6 A7
+[REPLAY] re-transmitting captured frame ...
+[REPLAY] (simulation) would transmit the bytes below
+  replayed [8B]: A0 A1 A2 A3 A4 A5 A6 A7
+  NOTE: a real rolling-code fob would REJECT this replay --
+        the counter it expects has already advanced.
+[SELFTEST] done -- buttons remain live
+
+===========================================================================
+Notes from the live run:
+- The sketch COMPILES and RUNS in Wokwi's cloud builder once the IRremote and
+  RF24 libraries are added (Library Manager / libraries.txt). A libraries.txt
+  alone is required — Wokwi will not auto-find the headers without it.
+- radio.begin() returns false in the simulator (no nRF24 silicon is modelled),
+  so the sketch correctly takes its graceful "RF disabled" path instead of
+  hanging — confirming the defensive check works.
+- The capture->replay logic, hex payload handling, and the rolling-code
+  limitation message all execute exactly as designed.
+- NOT verified here: real 433 MHz TX/RX, which needs a physical nRF24 module.
